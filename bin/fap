@@ -1,0 +1,23 @@
+#!/bin/sh
+
+die() {
+    echo $@ >&2
+    exit 1
+}
+
+find_fapfile() {
+    until [ -f "fapfile.sh" ]
+    do
+        if [ `pwd` == "/" ]
+        then
+            die "No fapfile.sh found"
+        fi
+          
+        cd .. || exit 1
+    done
+}
+
+find_fapfile
+. ./fapfile.sh
+ssh $HOST -t -- sh -c "\". $REMOTE/fapfile.sh && setup && $@\""
+
