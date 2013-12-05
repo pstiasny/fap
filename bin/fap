@@ -19,5 +19,14 @@ find_fapfile() {
 
 find_fapfile
 . ./fapfile.sh
+
+# fap -p <command>
+# upload the fapfile before executing
+if [ "x$1" == "x-p" ]
+then
+    scp fapfile.sh $HOST:$REMOTE
+    shift
+fi
+
 ssh $HOST -t -- sh -c "\". $REMOTE/fapfile.sh && setup && $@\""
 

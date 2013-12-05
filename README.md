@@ -15,7 +15,8 @@ Usage
 
 Create a `fapfile.sh` file in your project's root.  Here is a minimal
 template, assuming you have a `vagrant` host configured in your
-ssh config and the project resides in `/vagrant/src/`:
+ssh config and the project resides in `/vagrant/src/` (this is where
+the fapfile resides on the host):
 
 ```sh
 HOST="vagrant"
@@ -26,9 +27,10 @@ setup() {
 }
 ```
 
-If host is a remote SSH server, you need to `scp` that file to your
-REMOTE.  If REMOTE is a VirtualBox shared directory of your project
-tree, you are good.
+If REMOTE is a VirtualBox shared directory of your project
+tree, you are already good.  It it is a remote SSH server,
+use `fap -p <command>` to scp the file over to HOST's REMOTE
+before executing the command.
 
 Now execute `fap sh` anywhere in your project directory tree.
 You should get a shell from your HOST.
