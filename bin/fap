@@ -28,5 +28,11 @@ then
     shift
 fi
 
-ssh $HOST -t -- sh -c "\". $REMOTE/fapfile.sh && setup && $@\""
+if [ "x$1" == x ]
+then
+    less fapfile.sh
+else
+    # here is where the magic happens
+    ssh $HOST -t -- sh -c "\". $REMOTE/fapfile.sh && setup && $@\""
+fi
 
