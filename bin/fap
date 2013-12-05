@@ -6,9 +6,9 @@ die() {
 }
 
 find_fapfile() {
-    until [ -f "fapfile.sh" ]
+    until test -f "fapfile.sh"
     do
-        if [ `pwd` == "/" ]
+        if test `pwd` = "/"
         then
             die "No fapfile.sh found"
         fi
@@ -22,13 +22,13 @@ find_fapfile
 
 # fap -p <command>
 # upload the fapfile before executing
-if [ "x$1" == "x-p" ]
+if test "x$1" = "x-p"
 then
     scp fapfile.sh $HOST:$REMOTE
     shift
 fi
 
-if [ "x$1" == x ]
+if test "x$1" = x
 then
     less fapfile.sh
 else
